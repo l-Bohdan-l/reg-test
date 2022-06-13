@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   registerApi,
@@ -38,6 +39,7 @@ export const logout = createAsyncThunk(
       await logOut();
       return;
     } catch (error) {
+      // eslint-disable-next-line consistent-return
       return rejectWithValue(error.message);
     }
   },
