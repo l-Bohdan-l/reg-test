@@ -2,13 +2,14 @@
 /* eslint-disable no-console */
 /* eslint-disable react/react-in-jsx-scope */
 // import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 
 import { loginSchema } from '../../utils/validationSchema';
+import { login } from '../../redux/auth/auth-operations';
 
 export default function LoginForm() {
   const initialValues = {
@@ -17,7 +18,7 @@ export default function LoginForm() {
   };
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // eslint-disable-next-line consistent-return
   // const handleChange = ({ target: { name, value } }) => {
@@ -35,6 +36,8 @@ export default function LoginForm() {
   const handleSubmit = (values, { resetForm }) => {
     // eslint-disable-next-line no-console
     console.log(values);
+
+    dispatch(login(values));
 
     resetForm();
   };

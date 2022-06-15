@@ -1,4 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable import/no-unresolved */
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   registerApi,
@@ -24,6 +25,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
+      console.log('credentials', credentials);
       const response = await logIn(credentials);
       return response;
     } catch (error) {

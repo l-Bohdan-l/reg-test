@@ -3,6 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 export const token = {
+  // eslint-disable-next-line no-shadow
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -16,7 +17,7 @@ export const token = {
  * body: { name, email, password }
  * После успешной регистрации добавляем токен в HTTP-заголовок
  */
-export const registerApi = async credentials => {
+export const registerApi = async (credentials) => {
   const { data } = await axios.post('/users/signup', credentials);
   token.set(data.token);
   return data;
@@ -27,7 +28,8 @@ export const registerApi = async credentials => {
  * body: { email, password }
  * После успешного логина добавляем токен в HTTP-заголовок
  */
-export const logIn = async credentials => {
+export const logIn = async (credentials) => {
+  console.log('credentials1', credentials);
   const { data } = await axios.post('/users/login', credentials);
   token.set(data.token);
   return data;
